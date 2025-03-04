@@ -1,0 +1,13 @@
+.graficos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px; /* Asegura que no se extienda demasiado */
+    margin: auto;
+}
+
+.nombre-grafico{
+    text-align: center;
+}

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -22,7 +21,15 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('formulario.index'); // Redirige a la vista principal
+            $user = Auth::user();
+
+            // 🔥 Admin puede ver gráficos y formulario
+            if ($user->rol === 'admin') {
+                return redirect()->route('formulario.index'); // Redirige a la vista del formulario
+            }
+
+            // 🔥 Usuario solo puede llenar la encuesta
+            return redirect()->route('formulario.index'); // Redirige a la vista del formulario
         }
 
         return back()->withErrors(['email' => 'Credenciales incorrectas']);

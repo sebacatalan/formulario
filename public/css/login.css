@@ -54,7 +54,7 @@
 .btn-login {
     width: 100%;
     padding: 10px;
-    background-color: #30a444;
+    background-color: #73bd3eca;
     color: white;
     border: none;
     border-radius: 5px;
@@ -64,7 +64,7 @@
 }
 
 .btn-login:hover {
-    background-color: #0056b3;
+    background-color: #1c8b0f;
 }
 
 /* Mensaje de error */

@@ -15,12 +15,22 @@ return new class extends Migration
             $table->id();
             $table->string('hora');
             $table->string('fecha');
-            $table->string('nacionalidad');
-            $table->string('motivo_visita');
-            $table->string('descubrimiento');
-            $table->string('viaje');
+            $table->string('motivo_consulta');
+            $table->string('motivo_viaje');
+            $table->string('via_acceso');
+            $table->string('pais');
+            $table->string('comuna')->nullable();
             $table->string('transporte');
-            $table->string('comuna')->nullable(); // Permitir valores nulos
+            $table->string('cantidad');
+            $table->string('rango1'); //entre 0 y 12 años
+            $table->string('rango2'); //entre 13 y 25 años
+            $table->string('rango3'); //entre 26 y 40 años
+            $table->string('rango4'); //entre 41 y 60 años
+            $table->string('rango5'); //entre 61 y 80 años
+            $table->string('rango6'); //más de 81 años
+            
+            $table->string('alojo');
+            $table->string('descubrimiento');
             $table->timestamps(); // Esto añadirá automáticamente campos created_at y updated_at
         });
     }

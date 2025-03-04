@@ -15,8 +15,9 @@ class Respuesta extends Model
         'fecha',
         'nacionalidad',
         'motivo_visita',
+        'alojo',
         'descubrimiento',
-        'viaje',
+        'cantidad',
         'transporte',
         'comuna'
     ];

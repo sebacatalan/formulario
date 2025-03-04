@@ -11,8 +11,20 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'nombre',  // Agrega este campo
+        'nombre',
         'email',
         'password',
+        'rol'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            if (empty($user->rol)) {
+                $user->rol = 'usuario';
+            }
+        });
+    }
 }

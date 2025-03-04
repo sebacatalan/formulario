@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('email', 191)->unique();
             $table->string('password');
+            $table->string('rol');
             $table->rememberToken();
             $table->timestamps();
             // $table->softDeletes(); // (Opcional) Permite "eliminaciones suaves"

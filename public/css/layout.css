@@ -12,20 +12,32 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Revisa esto */
+}
+h1{
+    text-align: center;
 }
 
 /* Header */
 .header {
-    background-color: #fff;
-    padding: 15px 20px;
+    background-color: #73bd3e;
+    padding: 8px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    display: flex; /* Añadir flex al header */
+    position: fixed;
+    align-items: center; /* Centrar verticalmente */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* Asegura que el header esté encima de otros elementos */
 }
 
 .nav {
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 10px;
+    width: 100%; /* Asegurar que el nav ocupe todo el ancho disponible */
 }
 
 /* Lista de navegación */
@@ -46,24 +58,13 @@ body {
     transition: 0.3s;
 }
 
-.nav-link:hover {
-    color: #007BFF;
+.nav-list {
+    gap: 10px; /* Reducir el espacio entre los elementos */
 }
 
-/* Botón de Cerrar Sesión alineado a la derecha */
-.logout-form {
-    margin-left: auto; /* Empuja el botón a la derecha */
-}
-
-.logout-button {
-    background: none;
-    border: none;
-    color: #d9534f;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 8px 12px;
-    transition: 0.3s;
-    margin-right: 20px; /* Agrega margen derecho */
+.nav-link, .logout-button {
+    font-size: 14px; /* Reducir tamaño de fuente */
+    padding: 6px 10px; /* Reducir padding de los elementos */
 }
 
 .logout-button:hover {
@@ -74,15 +75,52 @@ body {
 .main-content {
     flex: 1;
     padding: 20px;
-    max-width: 900px;
+    max-width: 1200px; /* Aumenta el ancho máximo para que los gráficos tengan más espacio */
     margin: auto;
+    padding-top: 100px;
+    width: 100%; /* Permite que los gráficos ocupen el ancho disponible */
 }
-
 /* Footer */
 .footer {
-    background-color: #fff;
+    background-color: #73bd3e;
     text-align: center;
     padding: 10px 0;
     font-size: 14px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.user-menu {
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.user-icon {
+    font-size: 35px;
+    
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    min-width: 150px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.user-info {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.user-menu.active .dropdown {
+    display: block;
 }

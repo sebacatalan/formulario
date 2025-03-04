@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="icon" type="image/png" href="{{ asset('images/Local_tourism.svg') }}">
+
 </head>
 <body>
     <div class="container">
@@ -14,9 +16,7 @@
             delectus quis provident dolore doloremque exercitationem, accusantium omnis hic, dignissimos at sapiente iusto 
             doloribus quod aliquid in.
         </p>
-
         <a href="/formulario" class="cta-button">Ir al formulario</a>
-
         <div class="auth-links">
             <a href="/login">Iniciar sesión</a>
             <!-- <a href="/register">Registrarse</a> -->

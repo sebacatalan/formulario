@@ -3,11 +3,13 @@
 @section('title', 'Formulario de Turismo')
 
 @section('content')
+
     <h1>Formulario de Turismo</h1>
 
     <form action="{{ route('guardar') }}" id="formulario" method="POST">
         @csrf
-        <label for="nacionalidad">Nacionalidad:</label>
+
+        <label for="nacionalidad">País de origen:</label>
         <select name="nacionalidad" id="nacionalidad" onchange="verificarNacionalidad()">
             <option value="" selected>Seleccione...</option>
             @foreach ($paises as $pais)
@@ -16,7 +18,7 @@
         </select>
 
         <div id="div_comuna" style="display: none;">
-            <label for="comuna">Comuna de Residencia:</label>
+            <label for="comuna">Comuna de residencia:</label>
             <select name="comuna" id="comuna" disabled>
                 <option value="" selected>Seleccione...</option>
                 @foreach ($comunas as $comunas_chile)
@@ -25,29 +27,38 @@
             </select>
         </div>
 
-        <label for="motivo_visita">Motivo Principal de Visita:</label>
-        <select name="motivo_visita" id="motivo_visita">
+        <label for="motivo_viaje">Principal motivo del viaje:</label>
+        <select name="motivo_viaje" id="motivo_viaje" required>
             <option value="" selected>Seleccione...</option>
-            <option value="Naturaleza y aventura">Naturaleza y aventura</option>
-            <option value="Cultura y patrimonio">Cultura y patrimonio</option>
-            <option value="Gastronomía">Gastronomía</option>
-            <option value="Relajación y bienestar">Relajación y bienestar</option>
-            <option value="Eventos">Eventos (especificar)</option>
-            <option value="Visita a familiares/amigos">Visita a familiares/amigos</option>
+            <option value="Turismo de naturaleza">Turismo de naturaleza</option>
+            <option value="Turismo de aventura">Turismo de aventura</option>
+            <option value="Visita familiar">Visita familiar</option>
+            <option value="Eventos">Eventos</option>
+            <option value="Trabajo">Trabajo</option>
+            <option value="Otros">Otros</option>
+        </select>
+
+        <label for="tipo_alojamiento">Tipo de alojamiento:</label>
+        <select name="tipo_alojamiento" id="tipo_alojamiento" required>
+            <option value="" selected>Seleccione...</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Cabaña">Cabaña</option>
+            <option value="Camping">Camping</option>
+            <option value="Hostal">Hostal</option>
+            <option value="Casa rodante">Casa rodante</option>
             <option value="Otro">Otro</option>
         </select>
 
-        <label for="descubrimiento">Cómo se Enteró de Panguipulli:</label>
+        <label for="descubrimiento">Cómo se enteró de Panguipulli:</label>
         <select name="descubrimiento" id="descubrimiento">
             <option value="" selected>Seleccione...</option>
             <option value="Internet">Internet</option>
-            <option value="Recomendación">Recomendación</option>
-            <option value="Medios">Medios</option>
-            <option value="Oficina de turismo">Oficina de turismo</option>
+            <option value="Recomendación">Recomendación (familiares/amigos)</option>
+            <option value="Medios">Medios de comunicación (tv/radio)</option>
             <option value="Otro">Otro</option>
         </select>
 
-        <label for="viaje">Con Quién Viajó:</label>
+        <label for="viaje">Con quién viajó:</label>
         <select name="viaje" id="viaje">
             <option value="" selected>Seleccione...</option>
             <option value="Solo">Solo</option>
@@ -57,19 +68,32 @@
             <option value="En grupo">En grupo</option>
         </select>
 
-        <label for="transporte">Medio de Transporte Principal:</label>
+        <label for="transporte">Principal medio de transporte:</label>
         <select name="transporte" id="transporte">
             <option value="" selected>Seleccione...</option>
             <option value="Auto">Auto</option>
             <option value="Bus">Bus</option>
+            <option value="Casa rodante">Casa rodante</option>
             <option value="Moto">Moto</option>
             <option value="Bicicleta">Bicicleta</option>
             <option value="Otro">Otro</option>
         </select>
 
+        <label for="actividades_principales">Actividades realizadas:</label>
+        <select name="actividades_principales" id="actividades_principales">
+            <option value="" selected>Seleccione...</option>
+            <option value="Senderismo">Senderismo</option>
+            <option value="Deportes acuáticos">Deportes acuáticos</option>
+            <option value="Visitas culturales">Visitas culturales</option>
+            <option value="Gastronomía">Gastronomía</option>
+            <option value="Otros">Otros</option>
+        </select>
+
         <div style="display: flex; justify-content: space-between;">
             <button type="submit">Guardar</button>
-            <a href="{{ route('descargar.csv') }}" class="btn btn-success">Descargar CSV</a>
+            @if(auth()->user()->rol === 'admin')
+                <a href="{{ route('descargar.csv') }}" class="btn btn-success">Descargar CSV</a>
+            @endif
         </div>
     </form>
 
@@ -82,7 +106,7 @@
             const nacionalidad = document.getElementById("nacionalidad");
             const div_comuna = document.getElementById("div_comuna");
             const comuna = document.getElementById("comuna");
-            
+
             if (nacionalidad.value === "Chile") {
                 div_comuna.style.display = "block";
                 comuna.disabled = false;
