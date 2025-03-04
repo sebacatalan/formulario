@@ -4,7 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+:root {
+    --pink: #000000;
+  }
 /* Estilos del cuerpo */
 body {
     font-family: "Open Sans", sans-serif;
@@ -37,50 +39,60 @@ h1{
     display: flex;
     align-items: center;
     padding: 0 10px;
-    width: 100%; /* Asegurar que el nav ocupe todo el ancho disponible */
+    width: 100%;
 }
 
-/* Lista de navegación */
 .nav-list {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
 }
 
-/* Links de navegación */
-.nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: 0.3s;
-}
-
-.nav-list {
-    gap: 10px; /* Reducir el espacio entre los elementos */
-}
-
 .nav-link, .logout-button {
-    font-size: 14px; /* Reducir tamaño de fuente */
-    padding: 6px 10px; /* Reducir padding de los elementos */
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 6px 10px;
+    font-size: 14px;
+    position: relative;
+    transition: all ease-in-out 250ms;
+}
+
+.nav-link::after, .logout-button::after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 0.4em;
+    width: 0%;
+    background-color: var(--pink);
+    bottom: -1em;
+    transition: all ease-in-out 250ms;
+}
+
+.nav-link:hover::after, .logout-button:hover::after {
+    width: 90%;
+}
+
+.nav-link:hover, .logout-button:hover {
+    color: var(--pink);
+    transform: scale(1.1); /* Agrega un ligero aumento de tamaño */
 }
 
 .logout-button:hover {
-    color: #c9302c;
+    color: #ffffff;
 }
 
-/* Contenido principal */
 .main-content {
     flex: 1;
     padding: 20px;
-    max-width: 1200px; /* Aumenta el ancho máximo para que los gráficos tengan más espacio */
+    max-width: 1200px;
     margin: auto;
     padding-top: 100px;
-    width: 100%; /* Permite que los gráficos ocupen el ancho disponible */
+    width: 100%;
 }
-/* Footer */
+
 .footer {
     background-color: #73bd3e;
     text-align: center;
@@ -88,7 +100,6 @@ h1{
     font-size: 14px;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 .user-menu {
     position: relative;
@@ -98,7 +109,13 @@ h1{
 
 .user-icon {
     font-size: 35px;
-    
+    color: #fff;
+    transition: all ease-in-out 250ms;
+}
+
+.user-icon:hover {
+    color: var(--pink);
+    transform: scale(1.1); /* Agrega un ligero aumento de tamaño */
 }
 
 .dropdown {
