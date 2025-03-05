@@ -4,9 +4,30 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 :root {
-    --pink: #000000;
-  }
+    --pink: #126a1a;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #73bd3e; /* Color de la "manija" de desplazamiento */
+    /*border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del "riel" de desplazamiento */
+}
+
+/* Efecto hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #199123; 
+}
+
 /* Estilos del cuerpo */
 body {
     font-family: "Open Sans", sans-serif;
@@ -14,9 +35,10 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Revisa esto */
+    min-height: 100vh;
 }
-h1{
+
+h1 {
     text-align: center;
 }
 
@@ -26,13 +48,16 @@ h1{
     padding: 8px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     height: 80px;
-    display: flex; /* Añadir flex al header */
+    display: flex;
+    /* Añadir flex al header */
     position: fixed;
-    align-items: center; /* Centrar verticalmente */
+    align-items: center;
+    /* Centrar verticalmente */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100; /* Asegura que el header esté encima de otros elementos */
+    z-index: 100;
+    /* Asegura que el header esté encima de otros elementos */
 }
 
 .nav {
@@ -50,7 +75,8 @@ h1{
     width: 100%;
 }
 
-.nav-link, .logout-button {
+.nav-link,
+.logout-button {
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
@@ -60,7 +86,8 @@ h1{
     transition: all ease-in-out 250ms;
 }
 
-.nav-link::after, .logout-button::after {
+.nav-link::after,
+.logout-button::after {
     content: "";
     position: absolute;
     display: block;
@@ -71,13 +98,22 @@ h1{
     transition: all ease-in-out 250ms;
 }
 
-.nav-link:hover::after, .logout-button:hover::after {
+.nav-link:hover::after,
+.logout-button:hover::after {
     width: 90%;
 }
 
-.nav-link:hover, .logout-button:hover {
+.nav-link:hover,
+.logout-button:hover {
     color: var(--pink);
-    transform: scale(1.1); /* Agrega un ligero aumento de tamaño */
+    transform: scale(1.1);
+    /* Agrega un ligero aumento de tamaño */
+}
+
+#logo{
+    width: 80px; 
+    height: 80px;
+    margin-right: 10px;
 }
 
 .logout-button:hover {
@@ -95,6 +131,7 @@ h1{
 
 .footer {
     background-color: #73bd3e;
+    color: #f1f1f1;
     text-align: center;
     padding: 10px 0;
     font-size: 14px;
@@ -115,7 +152,8 @@ h1{
 
 .user-icon:hover {
     color: var(--pink);
-    transform: scale(1.1); /* Agrega un ligero aumento de tamaño */
+    transform: scale(1.1);
+    /* Agrega un ligero aumento de tamaño */
 }
 
 .dropdown {

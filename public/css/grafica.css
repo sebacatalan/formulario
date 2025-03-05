@@ -4,10 +4,32 @@
     gap: 20px;
     justify-content: center;
     width: 100%;
-    max-width: 1200px; /* Asegura que no se extienda demasiado */
+    max-width: 1200px;
     margin: auto;
 }
 
-.nombre-grafico{
+.nombre-grafico {
     text-align: center;
+}
+
+.custom-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 3px;
 }

@@ -5,43 +5,9 @@
 @section('content')
     <h1>Gráficas de Datos</h1>
     <style>
-        .graficos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            justify-content: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-        }
 
-        .nombre-grafico {
-            text-align: center;
-        }
-
-        .custom-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-            font-size: 14px;
-            justify-content: center;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .legend-color {
-            width: 15px;
-            height: 15px;
-            display: inline-block;
-            border-radius: 3px;
-        }
     </style>
-    
+
     <div class="graficos-grid">
         <div class="grafico-item">
             <h2 class="nombre-grafico">Gráfico 1</h2>
@@ -63,6 +29,11 @@
             <canvas id="graficoTorta4"></canvas>
             <div id="legend-container-4"></div>
         </div>
+        <div class="grafico-item">
+            <h2 class="nombre-grafico">Gráfico 5</h2>
+            <canvas id="graficoTorta5"></canvas>
+            <div id="legend-container-5"></div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -75,8 +46,21 @@
             // Datos para cada gráfico (Se pueden personalizar según tu lógica)
             const datosTorta = @json(json_decode($datosTorta));
 
-            const colores = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
-            const nombresGraficos = ["Gráfico 1", "Gráfico 2", "Gráfico 3", "Gráfico 4"];
+            const colores = [
+                '#FF5733', // Rojo anaranjado
+                '#FFC300', // Amarillo brillante
+                '#36A2EB', // Azul fuerte
+                '#4CAF50', // Verde vibrante
+                '#9C27B0', // Morado intenso
+                '#FF9800', // Naranja brillante
+                '#00BCD4', // Cian vibrante
+                '#E91E63', // Rosa fuerte
+                '#607D8B', // Azul grisáceo
+                '#795548', // Marrón oscuro
+                '#009688', // Verde azulado
+                '#FFEB3B'  // Amarillo limón
+            ];
+            const nombresGraficos = ["Gráfico 1", "Gráfico 2", "Gráfico 3", "Gráfico 4", "Gráfico 5"];
 
             function generarGrafico(idCanvas, idLeyenda, datos, titulo) {
                 const labels = datos.map(dato => dato.motivo_visita);
@@ -90,7 +74,7 @@
                             label: titulo,
                             data: data,
                             backgroundColor: colores,
-                            borderColor: '#ffffff',
+                            borderColor: '#fff',
                             borderWidth: 2
                         }]
                     },
@@ -100,7 +84,8 @@
                             datalabels: {
                                 color: '#000',
                                 font: {
-                                    weight: 'bold'
+                                    weight: 'bold',
+                                    size: 20
                                 },
                                 formatter: (value) => value,
                                 anchor: 'center',
@@ -122,11 +107,11 @@
 
                 labels.forEach((label, index) => {
                     legendHTML += `
-                        <div class="legend-item">
-                            <span class="legend-color" style="background-color: ${colores[index]}"></span>
-                            <span>${label}: ${data[index]}</span>
-                        </div>
-                    `;
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background-color: ${colores[index]}"></span>
+                                    <span>${label}: ${data[index]}</span>
+                                </div>
+                            `;
                 });
 
                 legendHTML += '</div>';
@@ -138,6 +123,7 @@
             generarGrafico("graficoTorta2", "legend-container-2", datosTorta, "Motivos de Visita 2");
             generarGrafico("graficoTorta3", "legend-container-3", datosTorta, "Motivos de Visita 3");
             generarGrafico("graficoTorta4", "legend-container-4", datosTorta, "Motivos de Visita 4");
+            generarGrafico("graficoTorta5", "legend-container-5", datosTorta, "Motivos de Visita 5");
         });
     </script>
 @endsection

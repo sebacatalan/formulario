@@ -5,22 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Sistema de Turismo')</title>
-
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grafica.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2 "></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 
 <body>
-
     <header class="header">
         <nav class="nav">
             <ul class="nav-list">
+                <li> <img src="images/panguipulli-color.jpg" alt="logo" id="logo"></li>
                 <li><a href="{{ route('formulario.index') }}" class="nav-link">Inicio</a></li>
                 @if(auth()->user()->rol === 'admin')
                     <li><a href="{{ route('grafica') }}" class="nav-link">Gráficos</a></li>
