@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Sistema de Turismo')</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/Local_tourism.svg') }}">
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/grafica.css') }}">
@@ -12,6 +13,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2 "></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    
 </head>
 
 <body>
@@ -22,6 +24,8 @@
                 <li><a href="{{ route('formulario.index') }}" class="nav-link">Inicio</a></li>
                 @if(auth()->user()->rol === 'admin')
                     <li><a href="{{ route('grafica') }}" class="nav-link">Gráficos</a></li>
+                    <li><a href="{{ route('subgrafica') }}" class="nav-link">Subgráficos</a></li>
+                    <li><a href="#" class="nav-link">Archivo</a></li>
                 @endif
 
                 <li class="user-menu">

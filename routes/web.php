@@ -18,13 +18,14 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 // Rutas protegidas con autenticación
 Route::middleware(['auth'])->group(function () {
 
-    // 📌 Ruta accesible para ambos roles (admin y usuario)
+    //  Ruta accesible para ambos roles (admin y usuario)
     Route::get('/formulario', [FormularioController::class, 'index'])->name('formulario.index');
     Route::post('/guardar', [FormularioController::class, 'guardar'])->name('guardar');
 
-    // 📌 Solo admin puede ver gráficos y descargar CSV
+    //  Solo admin puede ver gráficos y descargar CSV
     Route::middleware('role:admin')->group(function () {
         Route::get('/grafica', [GraficasController::class, 'mostrarGrafica'])->name('grafica');
+        Route::get('/subgrafica', [GraficasController::class, 'mostrarSubGraficas'])->name('subgrafica'); // Agrega esta línea
         Route::get('/descargar-csv', [ExportController::class, 'descargarCSV'])->name('descargar.csv');
     });
 

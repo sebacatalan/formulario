@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Gráficas de Datos')
+@section('title', 'Subgráficas de Datos')
 
 @section('content')
-    <h1>Gráficas de Datos</h1>
+    <h1>Subgráficas de Datos</h1>
     <style>
         .graficos-grid {
             display: grid;
@@ -43,33 +43,35 @@
     </style>
 
     <div class="graficos-grid">
-        @foreach (array_keys($datosGraficas) as $columna)
+        @foreach (array_keys($datosSubGraficas) as $columna)
             <div class="grafico-item">
-                <h2 class="nombre-grafico">{{ str_replace('_', ' ', ucfirst($columna)) }}</h2>
+                <h2 class="nombre-grafico">{{ str_replace('_', ' ', ucfirst(str_replace('_', ' ', $columna))) }}</h2>
                 <canvas id="grafico_{{ $columna }}"></canvas>
                 <div id="legend_{{ $columna }}" class="custom-legend"></div>
             </div>
         @endforeach
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Registrar el plugin datalabels
             Chart.register(ChartDataLabels);
 
-            @foreach (array_keys($datosGraficas) as $columna)
-                const datos_{{ $columna }} = @json(json_decode($datosGraficas[$columna]));
+            @foreach (array_keys($datosSubGraficas) as $columna)
+                let datos_{{ $columna }} = @json(json_decode($datosSubGraficas[$columna]));
 
-                // Filtrar valores null antes de procesarlos
-                const datosFiltrados_{{ $columna }} = datos_{{ $columna }}.filter(dato => dato['{{ $columna }}'] !== null && dato.total !== null);
+                // Filtrar valores null
+                datos_{{ $columna }} = datos_{{ $columna }}.filter(dato => dato.motivo_consulta_especifico !== null && dato.total !== null);
 
-                const labels_{{ $columna }} = datosFiltrados_{{ $columna }}.map(dato => dato['{{ $columna }}']);
-                const data_{{ $columna }} = datosFiltrados_{{ $columna }}.map(dato => dato.total);
+                const labels_{{ $columna }} = datos_{{ $columna }}.map(dato => dato.motivo_consulta_especifico);
+                const data_{{ $columna }} = datos_{{ $columna }}.map(dato => dato.total);
 
                 // Calcular el total de registros
                 const totalRegistros_{{ $columna }} = data_{{ $columna }}.reduce((acc, val) => acc + val, 0);
 
-                // Actualizar el título del gráfico
+                // Actualizar título del gráfico
                 const tituloElement_{{ $columna }} = document.querySelector('#grafico_{{ $columna }}').closest('.grafico-item').querySelector('.nombre-grafico');
                 tituloElement_{{ $columna }}.innerHTML = `{{ str_replace('_', ' ', ucfirst($columna)) }} <span style="font-size: 0.8em; color: #666;">(Total: ${totalRegistros_{{ $columna }}})</span>`;
 
@@ -78,7 +80,10 @@
                     '#00BCD4', '#E91E63', '#607D8B', '#795548', '#009688', '#FFEB3B'
                 ];
 
-                let chartType_{{ $columna }} = ['cantidad_viajeros', 'edad_0_12', 'edad_13_25', 'edad_26_40', 'edad_41_60', 'edad_61_80', 'edad_mas_81', 'noches_alojamiento', 'ecologia_panguipulli'].includes('{{ $columna }}') ? 'bar' : 'pie';
+                let chartType_{{ $columna }} = 'pie';
+                if (['cantidad_viajeros', 'edad_0_12', 'edad_13_25', 'edad_26_40', 'edad_41_60', 'edad_61_80', 'edad_mas_81', 'noches_alojamiento', 'ecologia_panguipulli'].includes('{{ $columna }}')) {
+                    chartType_{{ $columna }} = 'bar';
+                }
 
                 const ctx_{{ $columna }} = document.getElementById('grafico_{{ $columna }}').getContext('2d');
                 const grafico_{{ $columna }} = new Chart(ctx_{{ $columna }}, {
@@ -102,16 +107,14 @@
                                 formatter: (value, ctx) => {
                                     const dataset = ctx.chart.data.datasets[0];
                                     const sum = dataset.data.reduce((acc, data) => acc + data, 0);
-                                    const percentage = Math.round((value / sum) * 100) + '%';
-                                    return percentage;
+                                    return Math.round((value / sum) * 100) + '%';
                                 },
                                 color: '#fff',
                                 font: { weight: 'bold', size: 12 },
-                                display: function (context) {
+                                display: (context) => {
                                     const dataset = context.chart.data.datasets[0];
                                     const total = dataset.data.reduce((acc, data) => acc + data, 0);
-                                    const value = dataset.data[context.dataIndex];
-                                    return value / total > 0.03;
+                                    return dataset.data[context.dataIndex] / total > 0.03;
                                 }
                             }
                         },

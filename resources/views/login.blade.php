@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('images/Local_tourism.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
@@ -31,7 +32,7 @@
             <form action="{{ route('login.post') }}" method="POST">
                 @csrf
                 <div class="input-group">
-                    <input type="email" placeholder="Correo Electrónico" name="email" required>
+                    <input type="text" placeholder="Identificador" name="identificador" required>
                 </div>
 
                 <div class="input-group">

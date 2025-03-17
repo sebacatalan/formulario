@@ -8,14 +8,15 @@ form {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: 700px;
 }
 
 label {
     font-weight: bold;
 }
 
-select, button {
+select,
+button {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -44,4 +45,190 @@ button:hover {
 
 .btn-success:hover {
     background-color: #0056b3;
+}
+
+.subopciones {
+    display: none;
+    /* Añadido para ocultar las subopciones inicialmente */
+    margin-left: 20px;
+}
+
+.input-cantidad {
+    width: 70px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    /* Centra el texto dentro del input */
+    margin: 0 auto;
+    /* Centra los inputs horizontalmente */
+    border-radius: 5px;
+    /* O el valor que desees */
+    border: 1px solid #ccc;
+    /* Define un borde sutil */
+    outline: none;
+    /* Evita el borde resaltado al hacer clic */
+    box-shadow: none;
+    /* Elimina cualquier sombra predeterminada */
+    background-color: white;
+    /* Asegura que el fondo se mantenga claro */
+}
+
+/* Estilos para las etiquetas de campos obligatorios */
+.required-label {
+    font-weight: bold;
+    position: relative;
+}
+
+.required-label::after {
+    content: " *";
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Estilos para los campos obligatorios */
+.required-field {
+    border-left: 4px solid #e74c3c !important;
+    background-color: #fef9f9;
+}
+
+/* Estilo para campos obligatorios que ya tienen valor */
+.valid-field {
+    border-left: 4px solid #2ecc71 !important;
+    background-color: #f2fff2;
+}
+
+fieldset {
+    border: 2px solid #10c42b;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    /* Centra el texto dentro del fieldset */
+    display: flex;
+    flex-direction: column;
+    /* Organiza los elementos en columna */
+    align-items: center;
+    /* Centra horizontalmente */
+}
+
+legend {
+    font-size: 18px;
+    font-weight: bold;
+    color: #10c42b;
+    padding: 0 10px;
+}
+
+fieldset div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centra los elementos dentro del div */
+    width: 100%;
+    /* Ocupa el ancho completo del fieldset */
+    max-width: 300px;
+    /* Evita que se extienda demasiado */
+    gap: 10px;
+    /* Espacio entre label e input */
+}
+
+.label-edad {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    /* Alinea el texto a la derecha */
+    width: 120px;
+    /* Ajusta el ancho del label */
+}
+
+fieldset input {
+    width: 60px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    /* Centra el número dentro del input */
+}
+
+/* Mejoras para los contenedores de checkbox */
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    width: 100%; /* Asegura que el contenedor use todo el ancho disponible */
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: flex-start; /* Cambiado de center a flex-start para mejor alineación con texto largo */
+    margin-bottom: 12px; /* Aumentado para mejor separación en móviles */
+    width: 100%; /* Asegura que cada item ocupe todo el ancho */
+}
+
+/* Mejora para los checkboxes */
+.checkbox-item input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    min-width: 1.5em; /* Uso de min-width para evitar que se encoja */
+    width: 1.5em;
+    height: 1.5em;
+    border: 2px solid #aaa;
+    border-radius: 3px;
+    margin-right: 12px;
+    flex-shrink: 0; /* Importante: evita que el checkbox se reduzca */
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    background-color: #10c42b;
+    border-color: #10c42b;
+}
+
+.checkbox-item input[type="checkbox"]:checked::before {
+    content: '\2713';
+    /* Símbolo de verificación */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+}
+
+/* Mejora para las etiquetas */
+.checkbox-item label {
+    font-weight: normal;
+    font-size: 16px;
+    color: #333;
+    flex-grow: 1; /* Permite que la etiqueta crezca y ocupe el espacio disponible */
+    word-wrap: break-word; /* Permite que el texto se envuelva adecuadamente */
+    line-height: 1.4; /* Mejora la legibilidad en textos largos */
+}
+
+/* Media query para pantallas pequeñas */
+@media screen and (max-width: 480px) {
+    .checkbox-item {
+        padding: 5px 0; /* Da más espacio vertical en móviles */
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+        margin-top: 2px; /* Alinea mejor con el texto en la primera línea */
+    }
+}
+
+.pregunta-bloqueada {
+    opacity: 0.5;
+    /* Reduce la opacidad */
+    pointer-events: none;
+    /* Evita interacciones */
+}
+
+* {
+    box-sizing: border-box;
 }

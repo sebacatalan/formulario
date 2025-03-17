@@ -16,23 +16,22 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'identificador' => 'required',
             'password' => 'required',
         ]);
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            // 🔥 Admin puede ver gráficos y formulario
+            // Admin puede ver gráficos y formulario
             if ($user->rol === 'admin') {
                 return redirect()->route('formulario.index'); // Redirige a la vista del formulario
             }
-
-            // 🔥 Usuario solo puede llenar la encuesta
+            // Usuario solo puede llenar la encuesta
             return redirect()->route('formulario.index'); // Redirige a la vista del formulario
         }
 
-        return back()->withErrors(['email' => 'Credenciales incorrectas']);
+        return back()->withErrors(['identificador' => 'Credenciales incorrectas']);
     }
 
     public function logout()
